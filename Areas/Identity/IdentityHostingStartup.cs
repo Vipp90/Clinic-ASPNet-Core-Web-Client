@@ -20,7 +20,7 @@ namespace Strona.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("DBContextConnection")));
 
-                services.AddDefaultIdentity<Konto_Pacjenta>(options => options.SignIn.RequireConfirmedAccount = false)
+                services.AddDefaultIdentity<Patient_account>(options => options.SignIn.RequireConfirmedAccount = false)
                     .AddEntityFrameworkStores<DBContext>();
             });
         }

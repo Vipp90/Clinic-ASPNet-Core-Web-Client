@@ -20,14 +20,14 @@ namespace Strona.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<Konto_Pacjenta> _signInManager;
-        private readonly UserManager<Konto_Pacjenta> _userManager;
+        private readonly SignInManager<Patient_account> _signInManager;
+        private readonly UserManager<Patient_account> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<Konto_Pacjenta> userManager,
-            SignInManager<Konto_Pacjenta> signInManager,
+            UserManager<Patient_account> userManager,
+            SignInManager<Patient_account> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -88,7 +88,7 @@ namespace Strona.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new Konto_Pacjenta { UserName = Input.Email, Email = Input.Email, Imie =Input.Imie, Nazwisko = Input.Nazwisko };
+                var user = new Patient_account { UserName = Input.Email, Email = Input.Email, Imie =Input.Imie, Surname = Input.Nazwisko };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

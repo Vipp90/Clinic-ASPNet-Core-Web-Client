@@ -18,13 +18,13 @@ namespace Strona.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
-        private readonly UserManager<Konto_Pacjenta> _userManager;
-        private readonly SignInManager<Konto_Pacjenta> _signInManager;
+        private readonly UserManager<Patient_account> _userManager;
+        private readonly SignInManager<Patient_account> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<Konto_Pacjenta> signInManager, 
+        public LoginModel(SignInManager<Patient_account> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<Konto_Pacjenta> userManager)
+            UserManager<Patient_account> userManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
