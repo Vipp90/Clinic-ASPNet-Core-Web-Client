@@ -40,8 +40,8 @@ namespace Strona.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    imie = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    Nazwisko = table.Column<string>(type: "nvarchar(100)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    Surname = table.Column<string>(type: "nvarchar(100)", nullable: true)
                 },
                 constraints: table =>
                 {

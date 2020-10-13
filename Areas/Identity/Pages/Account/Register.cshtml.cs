@@ -88,7 +88,7 @@ namespace Strona.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new Patient_account { UserName = Input.Email, Email = Input.Email, Imie =Input.Imie, Surname = Input.Nazwisko };
+                var user = new Patient_account { UserName = Input.Email, Email = Input.Email, Name =Input.Imie, Surname = Input.Nazwisko };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
