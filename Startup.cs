@@ -8,6 +8,12 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Clinic_Web.Models.Models;
+
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Strona
 {
@@ -25,6 +31,9 @@ namespace Strona
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddDbContext<Database_controller>(options =>
+                    options.UseLazyLoadingProxies().UseSqlServer(
+                        Configuration.GetConnectionString("DBContextConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

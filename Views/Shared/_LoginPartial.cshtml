@@ -1,8 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Strona.Areas.Identity.Data
 
-@inject SignInManager<Konto_Pacjenta> SignInManager
-@inject UserManager<Konto_Pacjenta> UserManager
+@inject SignInManager<Patient_account> SignInManager
+@inject UserManager<Patient_account> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
