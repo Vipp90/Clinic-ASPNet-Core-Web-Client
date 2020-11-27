@@ -8,24 +8,31 @@ using Microsoft.EntityFrameworkCore;
 using Clinic_Web.Models.Models;
 using Clinic_Web.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-
+using Microsoft.AspNetCore.Identity;
+using Strona.Areas.Identity.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Clinic_Web.Controllers
 {
+    [Authorize(Roles = "Admin, Patient")]
     public class VisitsController : Controller
     {
         private readonly Database_controller _context;
+        private readonly UserManager<Patient_account> _userManager;
 
-        public VisitsController(Database_controller context)
+        public VisitsController(Database_controller context, UserManager<Patient_account> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
         
 
         // GET: Visits
         public async Task<IActionResult> Index()
         {
-            var database_controller = _context.Visits.Include(v => v.doctor).Include(v => v.patient);
+            var user = await _userManager.GetUserAsync(User);
+            
+            var database_controller = _context.Visits.Where(c => c.patient.Pesel == user.Pesel).Include(v => v.doctor).Include(v => v.patient);
             return View(await database_controller.ToListAsync());
         }
 

@@ -63,6 +63,13 @@ namespace Strona.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
+            [Range(0, Int64.MaxValue, ErrorMessage = "Pesel może zawierać tylko cyfry")]
+            [StringLength(11, MinimumLength = 4, ErrorMessage = "Pesel zawiera 11 znaków")]
+            [DataType(DataType.Text)]
+            [Display(Name = "Pesel")]
+            public string Pesel { get; set; }
+
+            [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
@@ -88,8 +95,11 @@ namespace Strona.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new Patient_account { UserName = Input.Email, Email = Input.Email, Name =Input.Imie, Surname = Input.Nazwisko };
+                var user = new Patient_account { UserName = Input.Email, Email = Input.Email, Name =Input.Imie, Surname = Input.Nazwisko, Pesel = Input.Pesel };
+                await _userManager.AddToRoleAsync(user, "Doctor");
                 var result = await _userManager.CreateAsync(user, Input.Password);
+                
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");

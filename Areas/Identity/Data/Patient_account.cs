@@ -19,7 +19,9 @@ namespace Strona.Areas.Identity.Data
         [Column(TypeName = "nvarchar(100)")]
         public string Surname { get; set; }
 
-     
+        [PersonalData]
+        [Column(TypeName = "nvarchar(50)")]
+        public string Pesel { get; set; }
 
     }
 }

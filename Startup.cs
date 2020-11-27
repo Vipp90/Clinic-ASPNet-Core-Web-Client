@@ -68,22 +68,25 @@ namespace Strona
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
-          //  CreateUserRoles(services).Wait();
+            CreateUserRoles(services).Wait();
         }
         private async Task CreateUserRoles(IServiceProvider serviceProvider)
         {
             // Initializing custom roles   
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var UserManager = serviceProvider.GetRequiredService<UserManager<Patient_account>>();
+            string[] roleNames = { "Admin", "Patient", "Doctor" };
 
             IdentityResult roleResult;
 
-            // Adding Admin Role
-            var roleCheck = await RoleManager.RoleExistsAsync("Admin");
-            if (!roleCheck)
+            foreach (var roleName in roleNames)
             {
-                //Create the roles and seed them to the database 
-                roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
+                var roleExist = await RoleManager.RoleExistsAsync(roleName);
+                if (!roleExist)
+                {
+                    //create the roles and seed them to the database
+                    roleResult = await RoleManager.CreateAsync(new IdentityRole(roleName));
+                }
             }
 
             // Assign Admin role to newly registered user

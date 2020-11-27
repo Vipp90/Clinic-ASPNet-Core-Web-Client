@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Clinic_Web.Models;
 using Clinic_Web.Models.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Clinic_Web.Controllers
 {
+    [Authorize(Roles = "Admin, Doctor")]
     public class DoctorsController : Controller
     {
         private readonly Database_controller _context;
