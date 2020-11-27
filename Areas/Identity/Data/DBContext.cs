@@ -9,7 +9,7 @@ using Strona.Areas.Identity.Data;
 
 namespace Strona.Data
 {
-    public class DBContext : IdentityDbContext<Patient_account>
+    public class DBContext : IdentityDbContext<Patient_account, IdentityRole, string>
     {
         public DBContext(DbContextOptions<DBContext> options)
             : base(options)

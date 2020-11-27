@@ -13,7 +13,8 @@ using Clinic_Web.Models.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
-
+using Strona.Areas.Identity.Data;
+using Strona.Data;
 
 namespace Strona
 {
@@ -34,10 +35,14 @@ namespace Strona
             services.AddDbContext<Database_controller>(options =>
                     options.UseLazyLoadingProxies().UseSqlServer(
                         Configuration.GetConnectionString("DBContextConnection")));
+            services.AddDefaultIdentity<Patient_account>(options => options.SignIn.RequireConfirmedAccount = false).AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<DBContext>().AddDefaultTokenProviders();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+            public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)
         {
             if (env.IsDevelopment())
             {
@@ -63,6 +68,30 @@ namespace Strona
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+          //  CreateUserRoles(services).Wait();
         }
+        private async Task CreateUserRoles(IServiceProvider serviceProvider)
+        {
+            // Initializing custom roles   
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var UserManager = serviceProvider.GetRequiredService<UserManager<Patient_account>>();
+
+            IdentityResult roleResult;
+
+            // Adding Admin Role
+            var roleCheck = await RoleManager.RoleExistsAsync("Admin");
+            if (!roleCheck)
+            {
+                //Create the roles and seed them to the database 
+                roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
+            }
+
+            // Assign Admin role to newly registered user
+            Patient_account user = await UserManager.FindByEmailAsync("g.zatorski90@wp.pl");
+            var User = new Patient_account();
+            await UserManager.AddToRoleAsync(user, "Admin");
+        }
+
     }
+
 }

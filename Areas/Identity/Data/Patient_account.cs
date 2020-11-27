@@ -19,6 +19,7 @@ namespace Strona.Areas.Identity.Data
         [Column(TypeName = "nvarchar(100)")]
         public string Surname { get; set; }
 
-       
+     
+
     }
 }

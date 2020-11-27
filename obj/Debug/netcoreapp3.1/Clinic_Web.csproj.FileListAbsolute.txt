@@ -410,3 +410,4 @@ C:\Users\Grzesiek\Desktop\Projekty\Przychodnia 2020\Clinic ASPNet Core\bin\Debug
 C:\Users\Grzesiek\Desktop\Projekty\Przychodnia 2020\Clinic ASPNet Core\obj\Debug\netcoreapp3.1\Clinic_Web.csproj.CoreCompileInputs.cache
 C:\Users\Grzesiek\Desktop\Projekty\Przychodnia 2020\Clinic ASPNet Core\obj\Debug\netcoreapp3.1\Clinic_Web.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Grzesiek\Desktop\Projekty\Przychodnia 2020\Clinic ASPNet Core\obj\Debug\netcoreapp3.1\Clinic_Web.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Grzesiek\Desktop\Projekty\Przychodnia 2020\Clinic ASPNet Core\bin\Debug\netcoreapp3.1\Properties\launchSettings_.json
