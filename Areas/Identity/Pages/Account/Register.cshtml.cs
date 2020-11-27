@@ -96,9 +96,10 @@ namespace Strona.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new Patient_account { UserName = Input.Email, Email = Input.Email, Name =Input.Imie, Surname = Input.Nazwisko, Pesel = Input.Pesel };
-                await _userManager.AddToRoleAsync(user, "Doctor");
+               
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                
+                await _userManager.AddToRoleAsync(user, "Doctor");
+
 
                 if (result.Succeeded)
                 {
