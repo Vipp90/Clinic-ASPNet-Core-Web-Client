@@ -1,23 +1,16 @@
-﻿using Clinic_Web.Models.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
-
-
-using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
 
 
 namespace Clinic_Web.Models.Models
 {
-   public class Visit
+    public class Visit
     {
         public long VisitId { get; set; }
         [DisplayName("Pacjent")]
         public virtual long PatientId { get; set; }
-        public virtual  Patient patient { get; set; }
+        public virtual Patient patient { get; set; }
         [DisplayName("Lekarz")]
         public virtual long DoctorId { get; set; }
         [DisplayName("Lekarz")]
@@ -35,10 +28,10 @@ namespace Clinic_Web.Models.Models
 
 
         }
-      //  public List<String> get_free_hours() {
-      //   return   this.doctor.get_free_visit_day(this.date);
+        //  public List<String> get_free_hours() {
+        //   return   this.doctor.get_free_visit_day(this.date);
 
-     //   }
+        //   }
 
         /*
         public override bool Equals(Object ob)

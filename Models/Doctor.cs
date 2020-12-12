@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Clinic_Web.Models
 {
-   public class Doctor
+    public class Doctor
     {
         public long DoctorId { get; set; }
         public string Name { get; set; }
@@ -69,32 +69,32 @@ namespace Clinic_Web.Models
         public List<DateTime> get_free_visit_day_example()
 
         {
-            
+
             DateTime data = new DateTime();
-            
+
             List<String> list = new List<String>();
             List<DateTime> hours = new List<DateTime>();
             DateTime hour = new DateTime();
             hour = hour.AddHours(9).AddMinutes(00);
-        
-            
-                for (int j = 0; j <= 16; j++)
-                {
+
+
+            for (int j = 0; j <= 16; j++)
+            {
                 /// hours.Add(hour.ToShortTimeString());
-               hours.Add(hour); 
+                hours.Add(hour);
                 hour = hour.AddMinutes(30);
-                }
-           
-                return hours;
-            
+            }
+
+            return hours;
+
         }
 
-                public List<DateTime> get_free_visit_day(DateTime data)
+        public List<DateTime> get_free_visit_day(DateTime data)
 
         {
             List<String> list = new List<String>();
             //var parsedDate = DateTime.Parse(data);
-            List< DateTime> hours = new List<DateTime>();
+            List<DateTime> hours = new List<DateTime>();
             String hourr;
             DateTime hour = new DateTime();
             hour = hour.AddHours(9).AddMinutes(00);

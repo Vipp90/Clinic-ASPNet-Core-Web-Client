@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Clinic_Web.Models;
+using Clinic_Web.Models.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Clinic_Web.Models.Models;
-using Clinic_Web.Models;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.AspNetCore.Identity;
 using Strona.Areas.Identity.Data;
-using Microsoft.AspNetCore.Authorization;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Clinic_Web.Controllers
 {
@@ -25,13 +24,13 @@ namespace Clinic_Web.Controllers
             _context = context;
             _userManager = userManager;
         }
-        
+
 
         // GET: Visits
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
-            
+
             var database_controller = _context.Visits.Where(c => c.patient.Pesel == user.Pesel).Include(v => v.doctor).Include(v => v.patient);
             return View(await database_controller.ToListAsync());
         }
@@ -72,12 +71,12 @@ namespace Clinic_Web.Controllers
 
 
 
-       //    items =    doctor1.get_free_visit_day_example();
-            ViewData["DoctorId"] = new SelectList(_context.Doctors, "DoctorId", "Surname" );
-            
-           ViewData["PatientId"] = new SelectList(_context.Patients, "PatientId", "Surname" );
+            //    items =    doctor1.get_free_visit_day_example();
+            ViewData["DoctorId"] = new SelectList(_context.Doctors, "DoctorId", "Surname");
 
-           // ViewData["hour"] = new SelectList(items);
+            ViewData["PatientId"] = new SelectList(_context.Patients, "PatientId", "Surname");
+
+            // ViewData["hour"] = new SelectList(items);
 
             // new SelectList(_context.Visits, "VisitId", "date");
 
@@ -100,11 +99,11 @@ namespace Clinic_Web.Controllers
             doctor = _context.Doctors.Find(x); ;
             Visit visit = new Visit();
             visit.doctor = doctor;
-            
-        //  var result = _context.Visits.ToList().Where(y => y.DoctorId == x);
-          //  doctor.Scheduled_visits = result;
+
+            //  var result = _context.Visits.ToList().Where(y => y.DoctorId == x);
+            //  doctor.Scheduled_visits = result;
             items = doctor.get_free_visit_day(data);
-           // items = doctor.get_free_visit_day(data);
+            // items = doctor.get_free_visit_day(data);
             return items;
         }
 
@@ -113,7 +112,7 @@ namespace Clinic_Web.Controllers
         public ActionResult get_visits(int a)
 
         {
-           
+
             Doctor doctor1 = new Doctor();
             doctor1 = _context.Doctors.Find(a);
 
@@ -121,7 +120,7 @@ namespace Clinic_Web.Controllers
 
 
 
-           // items = doctor1.get_free_visit_day_example();
+            // items = doctor1.get_free_visit_day_example();
             ViewData["DoctorId"] = new SelectList(_context.Doctors, "DoctorId", "Surname");
 
             ViewData["PatientId"] = new SelectList(_context.Patients, "PatientId", "Surname");
@@ -139,18 +138,18 @@ namespace Clinic_Web.Controllers
         {
             if (ModelState.IsValid)
             {
-             Doctor doctor =   _context.Doctors.Find(visit.DoctorId);
+                Doctor doctor = _context.Doctors.Find(visit.DoctorId);
 
                 // doctor.get_free_visit_day(visit.date);
                 // List<string> lista =  doctor.get_free_visit_day(visit.date);
-               
-              //  visit.doctor.Scheduled_visits.ToList().Add(visit);
+
+                //  visit.doctor.Scheduled_visits.ToList().Add(visit);
                 //visit.patient.Scheduled_visits.ToList().Add(visit);
                 _context.Add(visit);
                 await _context.SaveChangesAsync();
-                 return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));
 
-                
+
             }
             ViewData["DoctorId"] = new SelectList(_context.Doctors, "DoctorId", "DoctorId", visit.DoctorId);
             ViewData["PatientId"] = new SelectList(_context.Patients, "PatientId", "PatientId", visit.PatientId);

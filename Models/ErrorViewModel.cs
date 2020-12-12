@@ -1,5 +1,3 @@
-using System;
-
 namespace Strona.Models
 {
     public class ErrorViewModel

@@ -1,28 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Clinic_Web.Models.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Clinic_Web.Models.Models;
-using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
-using SQLitePCL;
 
 namespace Clinic_Web.Models.Controllers
 {
     public class PatientsController : Controller
     {
         private readonly Database_controller _context;
-        
+
 
 
         public PatientsController(Database_controller context)
         {
             _context = context;
-            
+
         }
-        
+
         // GET: Patients
         public async Task<IActionResult> Index()
         {
@@ -62,24 +57,24 @@ namespace Clinic_Web.Models.Controllers
         {
             if (ModelState.IsValid)
             {
-                
-               if (!_context.Patients.Any(o => o.Pesel == patient.Pesel))
-                    {
+
+                if (!_context.Patients.Any(o => o.Pesel == patient.Pesel))
+                {
 
                     _context.Add(patient);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
 
-                    }
-               else
-            {
+                }
+                else
+                {
 
-                ViewBag.Message = "Taki pacjent juz istnieje";
-                return View();
+                    ViewBag.Message = "Taki pacjent juz istnieje";
+                    return View();
+                }
+
             }
 
-            } 
-            
             return View(patient);
         }
 

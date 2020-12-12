@@ -2,14 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Clinic_Web.Models
 {
     public class Patient
     {
-        
+
         public long PatientId { get; set; }
 
         [DisplayName("Imię")]
@@ -54,7 +52,7 @@ namespace Clinic_Web.Models
                 return c;
             }
 
-             else return a;
+            else return a;
         }
     }
 }

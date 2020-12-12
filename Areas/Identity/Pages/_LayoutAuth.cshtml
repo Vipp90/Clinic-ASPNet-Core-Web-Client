@@ -3,6 +3,19 @@
     Layout = "/Views/Shared/_Layout.cshtml";
 }
 
+
+
+<div style="text-align:center">
+    <a>
+        Witamy na stronie przychodni.
+    </a>
+</div>
+<div class="col" style="text-align:center">
+    <img src="~/images/dziecieca.png" width="150" height="150" alt="Budget photo" />
+</div>
+
+
+
 <div class="row">
     <div class="col-md-6 offset-md-3">
         <div class=" card login-logout-tab">
@@ -33,26 +46,26 @@
 </div>
 @section Scripts{
     @RenderSection("Scripts", required: false)
-<script>
-    $(function () {
-        var current = this.location.pathname;
-        $('.nav-tabs li a').each(function () {
-            var $this = $(this);
-            if (current.indexOf($this.attr('href')) !== -1) {
-                $this.addClass('active');
+    <script>
+        $(function () {
+            var current = this.location.pathname;
+            $('.nav-tabs li a').each(function () {
+                var $this = $(this);
+                if (current.indexOf($this.attr('href')) !== -1) {
+                    $this.addClass('active');
 
-            }
+                }
+
+
+            })
+
+
 
 
         })
 
 
-
-    
-})
-
-
-</script>
+    </script>
 
 
 }

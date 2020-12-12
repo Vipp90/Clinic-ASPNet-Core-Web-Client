@@ -1,20 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Clinic_Web.Models.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Clinic_Web.Models.Models;
-
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.EntityFrameworkCore;
 using Strona.Areas.Identity.Data;
 using Strona.Data;
+using System;
+using System.Threading.Tasks;
 
 namespace Strona
 {
@@ -39,38 +34,38 @@ namespace Strona
                 .AddEntityFrameworkStores<DBContext>().AddDefaultTokenProviders();
 
             //Info about Passwords Strength
-            
-              services.Configure<IdentityOptions>(options =>
-              {
+
+            services.Configure<IdentityOptions>(options =>
+            {
                   // Password settings
                   options.Password.RequireDigit = false;
-                  options.Password.RequiredLength = 4;
-                  options.Password.RequireNonAlphanumeric = false;
-                  options.Password.RequireUppercase = false;
-                  options.Password.RequireLowercase = false;
-                  options.Password.RequiredUniqueChars = 4;
+                options.Password.RequiredLength = 4;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequiredUniqueChars = 4;
 
                   // Lockout settings
                   options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
-                  options.Lockout.MaxFailedAccessAttempts = 10;
-                  options.Lockout.AllowedForNewUsers = true;
+                options.Lockout.MaxFailedAccessAttempts = 10;
+                options.Lockout.AllowedForNewUsers = true;
 
                   // User settings
                   options.User.RequireUniqueEmail = true;
-              });
-           /*
-              //The Account Login page's settings
-              services.ConfigureApplicationCookie(options =>
-              {
-                  // Cookies settings
-                  options.Cookie.HttpOnly = true;
-                  options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
-                  options.LoginPath = "/Account/Login"; // You can type here you own LoginPath, if you don't set custom path, ASP.NET Core will default to /Account/Login
-                  options.LogoutPath = "/Account/Logout"; // You can type here you own LogoutPath, if you don't set custom path, ASP.NET Core will default to /Account/Logout
-                  options.AccessDeniedPath = "/Account/AccessDenied"; // You can type you own AccesDeniedPath, if you don't set custom path, ASP.NET Core will default to /Account/AccessDenied;
-                  options.SlidingExpiration = true;
-              });
-              */
+            });
+            /*
+               //The Account Login page's settings
+               services.ConfigureApplicationCookie(options =>
+               {
+                   // Cookies settings
+                   options.Cookie.HttpOnly = true;
+                   options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                   options.LoginPath = "/Account/Login"; // You can type here you own LoginPath, if you don't set custom path, ASP.NET Core will default to /Account/Login
+                   options.LogoutPath = "/Account/Logout"; // You can type here you own LogoutPath, if you don't set custom path, ASP.NET Core will default to /Account/Logout
+                   options.AccessDeniedPath = "/Account/AccessDenied"; // You can type you own AccesDeniedPath, if you don't set custom path, ASP.NET Core will default to /Account/AccessDenied;
+                   options.SlidingExpiration = true;
+               });
+               */
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

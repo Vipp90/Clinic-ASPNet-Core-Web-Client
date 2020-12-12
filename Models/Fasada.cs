@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Clinic_Web.Models.Models
 {
@@ -10,20 +8,21 @@ namespace Clinic_Web.Models.Models
     {
         private Database_controller _context;
 
-       public Fasada(Database_controller context) {
+        public Fasada(Database_controller context)
+        {
             _context = context;
-       }
-    private List<Patient> patients = new List<Patient>();
+        }
+        private List<Patient> patients = new List<Patient>();
 
         public List<Patient> Patients { get => patients; set => patients = value; }
 
-        
+
 
         public void updatedata()
         {
 
             patients = _context.Patients.ToList();
-            
+
         }
 
 
