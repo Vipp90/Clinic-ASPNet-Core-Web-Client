@@ -5,11 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Delete</h1>
+<h1>Usuń</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+
 <div>
-    <h4>Patient</h4>
+    <h4>Pacjent</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -31,10 +31,10 @@
             @Html.DisplayFor(model => model.Pesel)
         </dd>
     </dl>
-    
+    <h3>Jesteś pewien że chcesz usunąć tego pacjenta?</h3>
     <form asp-action="Delete">
         <input type="hidden" asp-for="PatientId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Usuń" class="btn btn-danger" /> |
+        <a asp-action="Index">Cofnij</a>
     </form>
 </div>

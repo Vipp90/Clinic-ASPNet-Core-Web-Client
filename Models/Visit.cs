@@ -7,9 +7,12 @@ namespace Clinic_Web.Models.Models
 {
     public class Visit
     {
+        
+        
         public long VisitId { get; set; }
         [DisplayName("Pacjent")]
         public virtual long PatientId { get; set; }
+        [DisplayName("Pacjent")]
         public virtual Patient patient { get; set; }
         [DisplayName("Lekarz")]
         public virtual long DoctorId { get; set; }
@@ -17,10 +20,12 @@ namespace Clinic_Web.Models.Models
         public virtual Doctor doctor { get; set; }
         [DisplayName("Data")]
         [Required]
+        
         [DataType(DataType.Date)]
         public DateTime date { get; set; }
 
         [DisplayName("Godzina")]
+        [Required]
         public string hour { get; set; }
         public Visit()
 

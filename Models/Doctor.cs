@@ -1,15 +1,22 @@
 ﻿using Clinic_Web.Models.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Clinic_Web.Models
 {
     public class Doctor
     {
         public long DoctorId { get; set; }
+        [DisplayName("Imię")]
         public string Name { get; set; }
+        [DisplayName("Nazwisko")]
         public string Surname { get; set; }
+        [DisplayName("Specjalizacja")]
         public string Specialization { get; set; }
+
+     
 
         public virtual IEnumerable<Visit> Scheduled_visits { get; set; }
 

@@ -5,22 +5,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Lista lekarzy</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Utwórz</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+               Imię
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Surname)
+                Nazwisko
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Specialization)
+               Specjalizacja
             </th>
             <th></th>
         </tr>
@@ -38,9 +38,9 @@
                 @Html.DisplayFor(modelItem => item.Specialization)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.DoctorId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.DoctorId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.DoctorId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.DoctorId">Edycja</a> |
+                 
+                <a asp-action="Delete" asp-route-id="@item.DoctorId">Usuń</a>
             </td>
         </tr>
 }

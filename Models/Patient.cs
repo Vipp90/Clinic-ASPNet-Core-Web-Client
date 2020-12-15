@@ -12,7 +12,7 @@ namespace Clinic_Web.Models
 
         [DisplayName("Imię")]
         public string Name { get; set; }
-
+        [DisplayName("Nazwisko")]
         public string Surname { get; set; }
         public string Pesel { get; set; }
 

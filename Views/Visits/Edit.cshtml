@@ -1,13 +1,13 @@
 ﻿@model Clinic_Web.Models.Models.Visit
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edycja";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
 
-<h4>Visit</h4>
+
+<h4>Edycja</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -21,24 +21,73 @@
             </div>
             <div class="form-group">
                 <label asp-for="DoctorId" class="control-label"></label>
-                <select asp-for="DoctorId" class="form-control" asp-items="ViewBag.DoctorId"></select>
+                <select asp-for="DoctorId" class="form-control" id="iddoctor" asp-items="ViewBag.DoctorId"></select>
                 <span asp-validation-for="DoctorId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="date" class="control-label"></label>
-                <input asp-for="date" class="form-control" />
+                <input asp-for="date"  id="chosendata"  class="form-control" />
                 <span asp-validation-for="date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <label asp-for="hour" class="control-label"></label>
+                <select asp-for="hour" class="form-control"  asp-items="ViewBag.hour"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Zapisz" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Cofnij</a>
 </div>
+
+
+<script>
+                    function goess() {
+                        var x = document.getElementById("iddoctor").value;
+                        var y = document.getElementById("chosendata").value;
+
+
+                        if (y != "") {
+
+
+                        $.ajax({
+                      url: '@Url.Action("Updatedata", "Visits")',
+                            dataType: "json",
+                            data: { x, data: y} ,
+                            success: function (data) {
+                                if (data == null) {
+                                    alert("Podałeś złą date");
+
+                                    $('#hour').empty();
+                                }
+                                else {
+                                    console.log("else");
+                                    var items = data;
+
+                                var item = "";
+                                var itemss
+
+
+                                for (var i = 0; i < items.length; i++) {
+                                    item = items[i];
+                                    item = item.replace("0001-01-01T", "").slice(0, -3);
+                                    itemss += "<option value='" + item + "'>" + item + "</option>"
+
+                                }
+                                    $('#hour').html(itemss);
+                                    console.log(itemss);
+                                }
+                            },
+                             });
+                        } };
+
+</script>
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

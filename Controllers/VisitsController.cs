@@ -18,19 +18,25 @@ namespace Clinic_Web.Controllers
     {
         private readonly Database_controller _context;
         private readonly UserManager<Patient_account> _userManager;
+        public string pesel;
+
+        
 
         public VisitsController(Database_controller context, UserManager<Patient_account> userManager)
         {
             _context = context;
             _userManager = userManager;
-        }
 
+           
+        }
 
         // GET: Visits
         public async Task<IActionResult> Index()
         {
-            var user = await _userManager.GetUserAsync(User);
 
+        var user = await _userManager.GetUserAsync(User);
+
+            pesel = user.Pesel;
             var database_controller = _context.Visits.Where(c => c.patient.Pesel == user.Pesel).Include(v => v.doctor).Include(v => v.patient);
             return View(await database_controller.ToListAsync());
         }
@@ -56,37 +62,16 @@ namespace Clinic_Web.Controllers
         }
 
         // GET: Visits/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var items = new List<string> {
-             "111",
-             "222",
-             "333"
-                               };
-            long id = 1;
-            Doctor doctor1 = new Doctor();
-            doctor1 = _context.Doctors.Find(id);
 
 
+            var user = await _userManager.GetUserAsync(User);
+            ViewData["DoctorId"] = new SelectList(_context.Doctors, "DoctorId", nameof(Doctor.Name), nameof(Doctor.Surname));
 
+            ViewData["PatientId"] = new SelectList(_context.Patients.Where(c => c.Pesel == user.Pesel), "PatientId", "Surname");
 
-
-            //    items =    doctor1.get_free_visit_day_example();
-            ViewData["DoctorId"] = new SelectList(_context.Doctors, "DoctorId", "Surname");
-
-            ViewData["PatientId"] = new SelectList(_context.Patients, "PatientId", "Surname");
-
-            // ViewData["hour"] = new SelectList(items);
-
-            // new SelectList(_context.Visits, "VisitId", "date");
-
-
-            // List<string> DropDownList1 = new List<string>();
-            // DropDownList1.
-            //DropDownList1.DataBind();
-
-
-
+           
 
             return View();
         }
@@ -94,7 +79,10 @@ namespace Clinic_Web.Controllers
         [HttpGet]
         public List<DateTime> Updatedata(long x, DateTime data)
         {
-            var items = new List<DateTime>();
+            DateTime todaydata = DateTime.Today;
+             var items = new List<DateTime>();
+            if (data.DayOfYear < todaydata.DayOfYear)
+            { return null; }
             Doctor doctor = new Doctor();
             doctor = _context.Doctors.Find(x); ;
             Visit visit = new Visit();
@@ -169,10 +157,29 @@ namespace Clinic_Web.Controllers
             {
                 return NotFound();
             }
-            ViewData["DoctorId"] = new SelectList(_context.Doctors, "DoctorId", "DoctorId", visit.DoctorId);
-            ViewData["PatientId"] = new SelectList(_context.Patients, "PatientId", "PatientId", visit.PatientId);
+            ViewData["DoctorId"] = new SelectList(_context.Doctors, "DoctorId", "Surname", visit.DoctorId);
+            ViewData["PatientId"] = new SelectList(_context.Patients, "PatientId", "Surname", visit.PatientId);
+
+            var items = Updatedata(visit.DoctorId, visit.date);
+           
+            var item = "";
+            List<String> itemss = new List<String>();
+
+           // for (var i = 0; i < items.Count; i++)
+          //  {
+             
+             //   item = items[i].TimeOfDay.ToString();
+             //   item = item.Substring(0, item.Length - 3);
+                
+
+
+          //  }
+          
+          //  ViewData["hour"] = new SelectList(items, "Minute" + "H);
+            //new Multi
             return View(visit);
         }
+        
 
         // POST: Visits/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 

@@ -43,9 +43,9 @@
                 @Html.DisplayFor(modelItem => item.hour)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.VisitId">Edycja</a> |
-                <a asp-action="Details" asp-route-id="@item.VisitId">Szczegóły</a> |
-                <a asp-action="Delete" asp-route-id="@item.VisitId">Usuń</a>
+                <a asp-action="Edit" asp-route-id="@item.VisitId">Edytuj wizytę</a> 
+                |
+                <a asp-action="Delete" asp-route-id="@item.VisitId">Odwołaj wizytę</a>
             </td>
         </tr>
 }

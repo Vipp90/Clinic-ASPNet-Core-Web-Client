@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Lista pacjentów</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Utwórz nowego pacjenta</a>
     @if (ViewBag.Message != null)
     {
 <script>
@@ -48,9 +48,9 @@
                     @Html.DisplayFor(modelItem => item.Pesel)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.PatientId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.PatientId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.PatientId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.PatientId">Edycja</a> |
+                    
+                    <a asp-action="Delete" asp-route-id="@item.PatientId">Usuń</a>
                 </td>
             </tr>
         

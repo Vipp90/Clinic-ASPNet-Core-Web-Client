@@ -70,7 +70,7 @@ namespace Strona.Areas.Identity.Pages.Account
             public string Pesel { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "Hasło musi składać się z minimum 6 znaków.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "Hasło musi składać się z minimum 4  znaków.", MinimumLength = 4)]
             [DataType(DataType.Password)]
             [Display(Name = "Hasło")]
             public string Password { get; set; }
@@ -98,7 +98,7 @@ namespace Strona.Areas.Identity.Pages.Account
                 var user = new Patient_account { UserName = Input.Email, Email = Input.Email, Name = Input.Imie, Surname = Input.Nazwisko, Pesel = Input.Pesel };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                await _userManager.AddToRoleAsync(user, "Doctor");
+                await _userManager.AddToRoleAsync(user, "Patient");
 
 
                 if (result.Succeeded)
