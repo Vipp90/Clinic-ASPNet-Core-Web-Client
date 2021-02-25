@@ -3,6 +3,6 @@ Application Clinic is used to manage the reception work at the clinic : for addi
 
 This repository will contain a WEB Client part of Clinic system, I am constantly working on it, adding new functionalities. Now it's possible to make account and log in, after that as a patient you can make reservation of your visit. For Admin account there are also pages for managing doctors, patients and visits. 
 
-You can check how it works at the address http://89.67.10.25 and login as test@gmail.com with password test. The environment is currently running on my laptop and so can not be always available.
+Unfornately at this moment you can't check this application online because I lost my public address IP, so I'm looking for cheap web hosting.
 
 In the nearest future I'm going to learn more html and CSS to improve design of the application. 
